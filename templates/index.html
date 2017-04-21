@@ -1,0 +1,60 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Titanic{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <a class="navbar-brand" href="#">Titanic Survival Prediction</a>
+        </div>    
+    </nav>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <form method="POST" action="">
+        <div class="row">
+            <div class="col-md-12">
+            <h3>To make a Titanic survival prediction,
+                enter the following information about the passenger:<h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <h5>{{ form.Pclass.label }}</h5>
+                {{ wtf.form_field(form.Pclass) }}
+                <h5>{{ form.Sex.label }}</h5>
+                <p>{{ wtf.form_field(form.Sex) }}</p>
+                <h5>{{ form.Embarked.label }}</h5>
+                <p>{{ wtf.form_field(form.Embarked) }}</p>
+                <p>{{ form.Age.label }} {{ form.Age(size=1) }}
+                {% for error in form.Age.errors %}
+                &nbsp;&nbsp;{{ error }}
+                {% endfor %}</p>
+                <p>{{ form.SibSp.label }} {{ form.SibSp(size=1) }}
+                {% for error in form.SibSp.errors %}
+                &nbsp;&nbsp;{{ error }}
+                {% endfor %}</p>
+                <p>{{ form.Parch.label }} {{ form.Parch(size=1) }}
+                {% for error in form.Parch.errors %}
+                &nbsp;&nbsp;{{ error }}
+                {% endfor %}</p>
+                <p>{{ form.Fare.label }} {{ form.Fare(size=1) }}
+                {% for error in form.Fare.errors %}
+                &nbsp;&nbsp;{{ error }}
+                {% endfor %}</p>
+                <br>
+                {{ form.submit() }}
+                {{ form.hidden_tag() }}
+            </div>
+            <div class="col-md-3">
+            <img src= https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzlUYaJ9xykGC-N5PijcV_eDBGCXy_pMn7sy6ymrVypmJ22q5ZmA
+ width="400" height="400" alt="Titanic" title="Titanic" border= "">
+            </div>
+            <div class="col-md-1">
+            </div>
+        </div> 
+    </div>   
+{% endblock %}

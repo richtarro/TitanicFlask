@@ -1,0 +1,50 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Titanic{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <a class="navbar-brand" href="/">Titanic Survival Prediction</a>
+        </div>    
+    </nav>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {% if response_scoring.json()["result"]["prediction"]==0.0 %}
+                    <h1>DID NOT SURVIVE!</h1>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <img src= {{ url_for('static', filename = 'css/images/rip.jpeg') }} width="200" height="200" alt="rip" title="RIP" border="0">
+                {% endif %}
+                {% if response_scoring.json()["result"]["prediction"]==1.0 %}
+                    <h1>SURVIVED!</h1>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <img src= {{ url_for('static', filename = 'css/images/survived.jpeg') }} width="400" height="200" alt="survived" title="Survived" border="0">
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <h4>Click the Titanic Survival Prediction link in the navigation bar above to make another prediction.<h4>
+        </div>
+        </div>   
+    </div>    
+{% endblock %}
